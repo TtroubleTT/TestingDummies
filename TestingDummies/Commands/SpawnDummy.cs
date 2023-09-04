@@ -3,7 +3,6 @@ using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using PlayerRoles;
 using System;
-using MEC;
 
 
 namespace TestingDummies.Commands
@@ -37,7 +36,14 @@ namespace TestingDummies.Commands
                 response = $"Invalid player with the specified ID or Nickname: {arguments.At(2)}";
                 return false;
             }
-            Plugin.Instance.spawning.SpawnDummy(name, role, player);            
+
+            if (Plugin.Instance is null)
+            {
+                response = "no work";
+                return false;
+            }
+            
+            Plugin.Instance.Spawning.SpawnDummy(name, role, player);            
             response = $"Spawned dummy with name '{name}', role '{role}', for player '{player.Nickname}'";
             return true;
         }

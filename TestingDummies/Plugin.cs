@@ -8,10 +8,10 @@ namespace TestingDummies
 {
     public class Plugin : Plugin<Config>
     {
-        public static Plugin Instance;
+        public static Plugin? Instance;
 
-        public Spawn spawning;
-        private Harmony _harmony;
+        public Spawn? Spawning;
+        private Harmony? _harmony;
 
         public override string Name => "Dev Dummies";
         public override string Prefix => Name;
@@ -23,7 +23,7 @@ namespace TestingDummies
         public override void OnEnabled()
         {           
             Instance = this;
-            spawning = new Spawn();
+            Spawning = new Spawn();
             _harmony = new("DevDummies-Rotation-Patch");
             _harmony.PatchAll();
 
@@ -37,7 +37,7 @@ namespace TestingDummies
             _harmony.UnpatchAll();
             _harmony = null;
             Instance = null;
-            spawning = null;
+            Spawning = null;
 
             base.OnDisabled();
         }           
